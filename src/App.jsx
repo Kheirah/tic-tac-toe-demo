@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import "./App.css";
 
 const initialState = [
@@ -47,8 +47,11 @@ function App() {
       <h1>Tic Tac Toe</h1>
 
       <div className="card">
-        {fieldState.map((field) => (
-          <button key={field.id}>{field.player || ""}</button>
+        {fieldState.map((field, index) => (
+          <Fragment key={field.id}>
+            <button>{field.player || ""}</button>
+            {index % 3 === 2 && <br />}
+          </Fragment>
         ))}
       </div>
 
