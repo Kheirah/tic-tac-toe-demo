@@ -81,6 +81,11 @@ function App() {
     }
   }
 
+  function restartGame() {
+    setFieldState(initialState);
+    setCurrentPlayer("X");
+  }
+
   const didWin = checkWinState();
 
   return (
@@ -113,6 +118,10 @@ function App() {
           <p>Player {currentPlayer === "X" ? "O" : "X"} won the game!</p>
         )}
       </div>
+
+      <button className="restart" onClick={restartGame}>
+        Restart
+      </button>
 
       <p className="read-the-docs">
         Click on a square to place your mark. The first player to get three in a
