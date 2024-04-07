@@ -91,6 +91,7 @@ function App() {
         {fieldState.map((field, index) => (
           <Fragment key={field.id}>
             <button
+              disabled={field.player || didWin}
               onClick={() => {
                 setFieldState(
                   fieldState.map((state) =>
@@ -107,6 +108,10 @@ function App() {
             {index % 3 === 2 && <br />}
           </Fragment>
         ))}
+
+        {didWin && (
+          <p>Player {currentPlayer === "X" ? "O" : "X"} won the game!</p>
+        )}
       </div>
 
       <p className="read-the-docs">
