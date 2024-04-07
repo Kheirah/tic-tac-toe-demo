@@ -42,6 +42,7 @@ const initialState = [
 
 function App() {
   const [fieldState, setFieldState] = useState(initialState);
+  const [currentPlayer, setCurrentPlayer] = useState("X");
   return (
     <>
       <h1>Tic Tac Toe</h1>
@@ -49,7 +50,20 @@ function App() {
       <div className="card">
         {fieldState.map((field, index) => (
           <Fragment key={field.id}>
-            <button>{field.player || ""}</button>
+            <button
+              onClick={() => {
+                setFieldState(
+                  fieldState.map((state) =>
+                    state.id === field.id
+                      ? { ...state, player: currentPlayer }
+                      : state
+                  )
+                );
+                setCurrentPlayer(currentPlayer === "X" ? "O" : "X");
+              }}
+            >
+              {field.player || ""}
+            </button>
             {index % 3 === 2 && <br />}
           </Fragment>
         ))}
