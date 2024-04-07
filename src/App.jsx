@@ -43,9 +43,49 @@ const initialState = [
 function App() {
   const [fieldState, setFieldState] = useState(initialState);
   const [currentPlayer, setCurrentPlayer] = useState("X");
+
+  function checkWinState() {
+    // check rows
+    if (
+      allThreeTheSame(0, 1, 2) ||
+      allThreeTheSame(3, 4, 5) ||
+      allThreeTheSame(6, 7, 8)
+    ) {
+      return true;
+    }
+
+    // check columns
+    if (
+      allThreeTheSame(0, 3, 6) ||
+      allThreeTheSame(1, 4, 7) ||
+      allThreeTheSame(2, 5, 8)
+    ) {
+      return true;
+    }
+
+    // check diagonals
+    if (allThreeTheSame(0, 4, 8) || allThreeTheSame(2, 4, 6)) {
+      return true;
+    }
+
+    return false;
+
+    function allThreeTheSame(fieldA, fieldB, fieldC) {
+      return (
+        fieldState[fieldA].player &&
+        fieldState[fieldB].player &&
+        fieldState[fieldC].player &&
+        fieldState[fieldA].player === fieldState[fieldB].player &&
+        fieldState[fieldB].player === fieldState[fieldC].player
+      ); // making use of associative property
+    }
+  }
+
+  const didWin = checkWinState();
+
   return (
     <>
-      <h1>Tic Tac Toe</h1>
+      <h1>{didWin ? "YOU WON!" : "Tic Tac Toe"}</h1>
 
       <div className="card">
         {fieldState.map((field, index) => (
