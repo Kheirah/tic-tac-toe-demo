@@ -77,7 +77,7 @@ function App() {
         fieldState[fieldC].player &&
         fieldState[fieldA].player === fieldState[fieldB].player &&
         fieldState[fieldB].player === fieldState[fieldC].player
-      ); // making use of associative property
+      ); // A === B && B === C => A === C making use of transitive property
     }
   }
 
